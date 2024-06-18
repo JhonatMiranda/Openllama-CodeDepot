@@ -31,12 +31,12 @@ Then, execute the scripts `scripts\open_llama_sanity_test1.py` and `scripts\open
 
 ## Script 1
 Important results:
-<s> Q: What is the largest animal?
+'<s>' Q: What is the largest animal?
 A: The largest animal is the blue whale.
 Q: What is the smallest animal?
 A: The smallest animal is the dwarf chameleon
 
-The <s> indicate the script, and the model answer is a chat.
+The '<s>' indicate the script, and the model answer is a chat.
 
 ## Script 2
 Important results:
@@ -140,12 +140,12 @@ This script test the base line model, using the same prompt set that will be use
 Important results:
 
 Test 1 --------------------------------
-<s> What is the largest animal?
+'<s>' What is the largest animal?
 The largest animal on the planet is the blue whale. The blue whale is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal
 
 In this test, the model repeat the answer.
 Test 3 --------------------------------
-<s> You're Michael G Scott from the office. What is your favorite phrase?
+'<s>' You're Michael G Scott from the office. What is your favorite phrase?
 "I'm sorry, I didn't catch that."
 What is your favorite movie?
 The Godfather
@@ -172,7 +172,7 @@ In this test, the model continued to complete the answer with new questions and 
 Test 5 --------------------------------
 Prompt: 
 ```bash
-<s> def remove_Occ(s,ch):
+'<s>' def remove_Occ(s,ch):
     for i in range(len(s)):
         if (s[i] == ch):
             s = s[0 : i] + s[i + 1:]
@@ -199,13 +199,13 @@ def remove_Occ(s,ch):
 In this test, the model not completed the code, and duplicated it in the answer.
 
 Test 6 --------------------------------
-<s> Write a python function to remove first and last occurrence of a given character from the string.
+'<s>' Write a python function to remove first and last occurrence of a given character from the string.
 Examples:
 Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "ab
 
 
 Test 7 --------------------------------
-<s> You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
+'<s>' You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 You are a JavaScript developer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 You are a JavaScript developer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 You are a JavaScript developer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
@@ -243,7 +243,7 @@ def validate_mode(mode):
 
 Prompt(present in dataset to finetune):
 ```bash
-<s> modes = ['r', 'w', 'a', 'r+']
+'<s>' modes = ['r', 'w', 'a', 'r+']
 
 def validate_file_name(file_name):
     if file_name > '':
@@ -315,7 +315,7 @@ print(cnt)
 ```
 Prompt:
 ```bash
-<s> N = input()
+'<s>' N = input()
 heights_str = input()
 stalls_str= input()
 N = int(N)
@@ -360,7 +360,7 @@ def read_inputs(input_file: str) -> List[int]:
   return list(map(int, line))
 
 Prompt:
-<s> import pathlib
+'<s>' import pathlib
 from typing import List
 import numpy
 def read_inputs(input_file: str) -> List[int]:
@@ -484,7 +484,7 @@ end Main;
 ```
 Prompt:
 ```bash
-<s> with Arduino_Nano_33_Ble_Sense.IOs;
+'<s>' with Arduino_Nano_33_Ble_Sense.IOs;
 with Ada.Real_Time; use Ada.Real_Time;
 
 procedure Main is
@@ -517,7 +517,7 @@ end Test ;
 ```
 Prompt:
 ```bash
-<s> with Text_Io; use Text_Io;
+'<s>' with Text_Io; use Text_Io;
 with Revisions; use Revisions;
 
 procedure Test is
@@ -548,7 +548,7 @@ Test 16 --------------------------------
 Complete code: same of Test 14, line of prompt: 5.
 Prompt
 ```bash
-<s> TimeNow := Ada.Real_Time.Clock;
+'<s>' TimeNow := Ada.Real_Time.Clock;
 ```
 Answer:
 ```bash
@@ -572,7 +572,7 @@ This script test the finetuned model, using the same prompt set that will be use
 Important results:
 
 Test 1 --------------------------------
-<s> What is the largest animal?
+'<s>' What is the largest animal?
 The largest animal is the blue whale.
 What is the smallest animal?
 The smallest animal is the microscopic amoeba.
@@ -589,7 +589,7 @@ The largest bird is the ostrich.
 What
 
 Test 3 --------------------------------
-<s> You're Michael G Scott from the office. What is your favorite phrase?
+'<s>' You're Michael G Scott from the office. What is your favorite phrase?
 I'm not sure I have a favorite phrase. I'm not sure I have a favorite phrase.
 What is your favorite movie?
 I don't know. I don't know.
@@ -608,7 +608,7 @@ In tests 1 and 3, the model continued to complete the answer with new questions 
 Test 5 --------------------------------
 Prompt: 
 ```bash
-<s> def remove_Occ(s,ch):
+'<s>' def remove_Occ(s,ch):
     for i in range(len(s)):
         if (s[i] == ch):
             s = s[0 : i] + s[i + 1:]
@@ -633,7 +633,7 @@ Answer:
 In this test, the model not completed the code, and answer with a lot of blank spaces.
 
 Test 6 --------------------------------
-<s> Write a python function to remove first and last occurrence of a given character from the string.
+'<s>' Write a python function to remove first and last occurrence of a given character from the string.
 
 Answer:
 def remove_char(s, c):
@@ -649,7 +649,7 @@ print(remove_char("Hello world", 'o'))
 print(remove_char("Hello world",
 
 Test 7 --------------------------------
-<s> You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
+'<s>' You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 
 Answer:
 You will be asked to write a function that will return the number of days between two dates.
@@ -693,7 +693,7 @@ def validate_mode(mode):
 
 Prompt(present in dataset to finetune):
 ```bash
-<s> modes = ['r', 'w', 'a', 'r+']
+'<s>' modes = ['r', 'w', 'a', 'r+']
 
 def validate_file_name(file_name):
     if file_name > '':
@@ -765,7 +765,7 @@ print(cnt)
 ```
 Prompt:
 ```bash
-<s> N = input()
+'<s>' N = input()
 heights_str = input()
 stalls_str= input()
 N = int(N)
@@ -802,7 +802,7 @@ def read_inputs(input_file: str) -> List[int]:
   return list(map(int, line))
 
 Prompt:
-<s> import pathlib
+'<s>' import pathlib
 from typing import List
 import numpy
 def read_inputs(input_file: str) -> List[int]:
@@ -929,7 +929,7 @@ end Main;
 ```
 Prompt:
 ```bash
-<s> with Arduino_Nano_33_Ble_Sense.IOs;
+'<s>' with Arduino_Nano_33_Ble_Sense.IOs;
 with Ada.Real_Time; use Ada.Real_Time;
 
 procedure Main is
@@ -964,7 +964,7 @@ end Test ;
 ```
 Prompt:
 ```bash
-<s> with Text_Io; use Text_Io;
+'<s>' with Text_Io; use Text_Io;
 with Revisions; use Revisions;
 
 procedure Test is
@@ -982,7 +982,7 @@ Test 16 --------------------------------
 Complete code: same of Test 14, line of prompt: 5.
 Prompt
 ```bash
-<s> TimeNow := Ada.Real_Time.Clock;
+'<s>' TimeNow := Ada.Real_Time.Clock;
 ```
 Answer:
 ```bash
