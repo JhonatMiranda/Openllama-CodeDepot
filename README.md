@@ -2,15 +2,15 @@
 
 # Table of Contents
 1. [Installation](#installation)
-2. [Test the base model](#Test the base model)
-    - [Script 1](#Script 1)
-    - [Script 2](#Script 2)
+2. [Test-the-base-model](#Test-the-base-model)
+    - [Script-1](#Script-1)
+    - [Script-2](#Script-2)
 4. [Fine-tuning](#fine-tuning)
     - [Setup](#setup)
     - [Training](#training)
-5. [Test and compare the base model with the finetuned model](#Test and compare the base model with the finetuned model)
-    - [Script 3](#Script 3)
-    - [Script 4](#Script 4)
+5. [Test-and-compare](#Test-and-compare)
+    - [Script-3](#Script-3)
+    - [Script-4](#Script-4)
 
 # Installation
 First, we have to install all the libraries listed in `requirements.txt`
@@ -22,22 +22,26 @@ huggingface-cli login
 #paste the copied token
 ```
 
-# Test the base model
+# Test-the-base-model
 First, make sure that the base model is cloned. If not:
 ```bash
 git clone https://github.com/openlm-research/open_llama.git
 ```
 Then, execute the scripts `scripts\open_llama_sanity_test1.py` and `scripts\open_llama_sanity_test2.py`.
 
-## Script 1
+## Script-1
 Important results:
+
 Q: What is the largest animal?
+
 A: The largest animal is the blue whale.
+
 Q: What is the smallest animal?
+
 A: The smallest animal is the dwarf chameleon
 
 
-## Script 2
+## Script-2
 Important results:
 
 Question 1 - The world's highest building is
@@ -118,7 +122,7 @@ nohup accelerate launch finetune.py \
 
 Important: The arguments `dataset_name` and `subset` are not used. The dataset path and name are manually defineds in the code.
  
-# Test and compare the base model with the finetuned model
+# Test-and-compare
 To evaluate StarCoder2 and its derivatives, you can use the [BigCode-Evaluation-Harness](https://github.com/bigcode-project/bigcode-evaluation-harness) for evaluating Code LLMs.
 
 The finetuned model as trained with this command, in a total of 0.05 epochs (Python dataset):
@@ -133,17 +137,21 @@ However, in the last comand, the argument `max_steps` is not used, because the a
 
 Below are some results from the test scripts comparing the baseline model with the finetuned model. For the full results, execute `scripts/open_llama_sanity_test3.py` (test baseline model) and `scripts/open_llama_sanity_test4.py` (test finetuned model). Results may variate.
 
-## Script 3
+## Script-3
 This script test the base line model, using the same prompt set that will be used to test the finetuned model. In these scripts, we adjust the output max length to 128 new tokens. Tests 11-13 to test Python dataset and 14-17 to test Ada dataset.
 
 Important results:
 
 Test 1 --------------------------------
+
  What is the largest animal?
+ 
 The largest animal on the planet is the blue whale. The blue whale is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal on the planet. It is the largest animal
 
 In this test, the model repeat the answer.
+
 Test 3 --------------------------------
+
  You're Michael G Scott from the office. What is your favorite phrase?
 "I'm sorry, I didn't catch that."
 What is your favorite movie?
@@ -169,7 +177,9 @@ What is your favorite thing about
 In this test, the model continued to complete the answer with new questions and answers.
 
 Test 5 --------------------------------
+
 Prompt: 
+
 ```bash
  def remove_Occ(s,ch):
     for i in range(len(s)):
@@ -198,12 +208,14 @@ def remove_Occ(s,ch):
 In this test, the model not completed the code, and duplicated it in the answer.
 
 Test 6 --------------------------------
+
  Write a python function to remove first and last occurrence of a given character from the string.
 Examples:
 Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "abcd" Input : s = "abcd" Output : "ab
 
 
 Test 7 --------------------------------
+
  You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 You are a JavaScript developer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 You are a JavaScript developer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
@@ -214,6 +226,7 @@ You are a JavaScript developer that helps to
 In Test 6 and 7, the model showed that its not worked to commands like "Write a function...".
 
 Test 11 --------------------------------
+
 Testing if the model can answer may complete with similar functions present in the Python dataset.
 Complete code in dataset:
 ```bash
@@ -275,6 +288,7 @@ def validate_file_extension(file_extension):
 ```
 
 Test 12 --------------------------------
+
 Complete code:
 ```bash
 N = input() 
@@ -348,6 +362,7 @@ stalls_dict = {}
 for
 ```
 Test 13 --------------------------------
+
 Complete code:
 ```bash
 import pathlib 
@@ -379,6 +394,7 @@ def read_inputs_with_duplicates(input_file: str) -> List[int]:
     with pathlib.Path(input_file).open(mode="r") as f
 ```
 Test 14 --------------------------------
+
 Complete code:
 ```bash
 with Arduino_Nano_33_Ble_Sense.IOs;
@@ -501,6 +517,7 @@ Answer:
 ```
 
 Test 15 --------------------------------
+
 Complete code:
 ```bash
 with Text_Io; use Text_Io; 
@@ -544,8 +561,10 @@ end Test;
 ```
 
 Test 16 --------------------------------
+
 Complete code: same of Test 14, line of prompt: 5.
-Prompt
+
+Prompt:
 ```bash
  TimeNow := Ada.Real_Time.Clock;
 ```
@@ -565,12 +584,13 @@ Answer:
 ```
 Tests 11-13 and 14-16 not complete with some similar code to finetuning dataset code (as expected).
 
-## Script 4
+## Script-4
 This script test the finetuned model, using the same prompt set that will be used to test the baseline model. Tests 11-13 to test Python dataset and 14-17 to test Ada dataset.
 
 Important results:
 
 Test 1 --------------------------------
+
  What is the largest animal?
 The largest animal is the blue whale.
 What is the smallest animal?
@@ -588,6 +608,7 @@ The largest bird is the ostrich.
 What
 
 Test 3 --------------------------------
+
  You're Michael G Scott from the office. What is your favorite phrase?
 I'm not sure I have a favorite phrase. I'm not sure I have a favorite phrase.
 What is your favorite movie?
@@ -605,6 +626,7 @@ What is your favorite season
 In tests 1 and 3, the model continued to complete the answer with new questions and answers.
 
 Test 5 --------------------------------
+
 Prompt: 
 ```bash
  def remove_Occ(s,ch):
@@ -632,6 +654,7 @@ Answer:
 In this test, the model not completed the code, and answer with a lot of blank spaces.
 
 Test 6 --------------------------------
+
  Write a python function to remove first and last occurrence of a given character from the string.
 
 Answer:
@@ -648,6 +671,7 @@ print(remove_char("Hello world", 'o'))
 print(remove_char("Hello world",
 
 Test 7 --------------------------------
+
  You are an expert programmer that helps to write JavaScript code based on the user request, with concise explanations. Don't be too verbose.
 
 Answer:
@@ -664,6 +688,7 @@ The function should be written in the most concise way possible.
 In Test 6 and 7, the model showed that its not worked to commands like "Write a function...".
 
 Test 11 --------------------------------
+
 Testing if the model can answer may complete with similar functions present in the Python dataset.
 Complete code in dataset:
 ```bash
@@ -725,6 +750,7 @@ def validate_file_content_type(file_content
 ```
 
 Test 12 --------------------------------
+
 Complete code:
 ```bash
 N = input() 
@@ -777,7 +803,6 @@ stalls.sort(reverse=True)
 cnt = 0
 def cal_cnts(heights, stalls):
 ```
-
 Answer:
 ```bash
     for i in range(len(heights)):
@@ -790,6 +815,7 @@ cnt = cal_cnts(heights, stalls)
 print(cnt)
 ```
 Test 13 --------------------------------
+
 Complete code:
 ```bash
 import pathlib 
@@ -824,6 +850,7 @@ def read_outputs(output_file: str) -> List[int]:
 In tests 11-13, the model can`t answer with similar code to finetuning dataset code (probably because it wasn't trained enough).
 
 Test 14 --------------------------------
+
 Complete code:
 ```bash
 with Arduino_Nano_33_Ble_Sense.IOs;
@@ -948,6 +975,7 @@ end Main;
 This test answer continue with a lot of blank spaces. The model complete using the `Digital_Write` function and the same arguments of the training dataset (is not a perfect answer but indicate traces of learning).
 
 Test 15 --------------------------------
+
 Complete code:
 ```bash
 with Text_Io; use Text_Io; 
@@ -978,8 +1006,10 @@ end Test;
 In this test, the model answer with a Put_Line command (is not a good answer but may indicate traces of learning).
 
 Test 16 --------------------------------
+
 Complete code: same of Test 14, line of prompt: 5.
-Prompt
+
+Prompt:
 ```bash
  TimeNow := Ada.Real_Time.Clock;
 ```
